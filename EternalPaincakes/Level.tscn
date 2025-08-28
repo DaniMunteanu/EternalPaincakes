@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=4 uid="uid://88f7tyc8psuj"]
+
+[ext_resource type="Texture2D" uid="uid://chs5ykbi07kev" path="res://Sprites/Tileset.png" id="1_ay31o"]
+[ext_resource type="PackedScene" uid="uid://7f6b70jg80m6" path="res://Player.tscn" id="2_kd7qc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r4x5k"]
+texture = ExtResource("1_ay31o")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_columns = 2
+0:0/animation_separation = Vector2i(2, 0)
+0:0/animation_frame_0/duration = 0.25
+0:0/animation_frame_1/duration = 0.25
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, -11.0264, 16, 14, 11, 13, -2, 12, -9, 11, -13, 10, -16, 9, -16, -11.0706)
+1:0/animation_columns = 2
+1:0/animation_separation = Vector2i(2, 0)
+1:0/animation_frame_0/duration = 0.25
+1:0/animation_frame_1/duration = 0.25
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, -11.0264, 16, 14, -16, 14, -16, -11.0706)
+2:0/animation_columns = 2
+2:0/animation_separation = Vector2i(2, 0)
+2:0/animation_frame_0/duration = 0.25
+2:0/animation_frame_1/duration = 0.25
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, -11.0264, 16, 14, 11, 13, -2, 12, -9, 11, -13, 10, -16, 9, -16, -11.0706)
+
+[sub_resource type="TileSet" id="TileSet_lght1"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_r4x5k")
+
+[node name="Level" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAACAAAAAAAGAAUAAAAAAAAAAAAHAAUAAAABAAAAAAAIAAUAAAACAAAAAAAKAAcAAAAAAAAAAAALAAcAAAABAAAAAAAMAAcAAAACAAAAAAD//wYAAAAAAAAAAAAAAAYAAAABAAAAAAABAAYAAAACAAAAAAALAAQAAAAAAAAAAAAMAAQAAAACAAAAAAA=")
+tile_set = SubResource("TileSet_lght1")
+
+[node name="Player" parent="." instance=ExtResource("2_kd7qc")]
+position = Vector2(232, 155)
