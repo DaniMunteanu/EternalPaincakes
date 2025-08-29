@@ -6,12 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://ba7o6air1l5dr" path="res://Sprites/Player/PlayerPrepareJump.png" id="3_r3d8o"]
 [ext_resource type="Texture2D" uid="uid://yd6udpc3da2p" path="res://Sprites/Player/PlayerJumping.png" id="5_aoleg"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yh8a2"]
-height = 32.0
-
-[sub_resource type="Animation" id="Animation_m111u"]
-resource_name = "PlayerIdleRight"
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_xsykm"]
+resource_name = "PlayerFloat"
 step = 0.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -23,83 +19,64 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_ng2pw")]
+"values": [ExtResource("5_aoleg")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/path = NodePath("Sprite2D:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
+"update": 0,
+"values": [Vector2(0, -15)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/path = NodePath("Sprite2D:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:offset")
+tracks/3/path = NodePath("Sprite2D:hframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -16)]
+"update": 1,
+"values": [1]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D:flip_h")
+tracks/4/path = NodePath("Sprite2D:vframes")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite2D:frame")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("CollisionShape2D:shape")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [SubResource("CapsuleShape2D_yh8a2")]
+"values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_xt5fc"]
-length = 0.001
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yh8a2"]
+height = 32.0
+
+[sub_resource type="Animation" id="Animation_g1ap3"]
+resource_name = "PlayerHoldingJump"
+length = 0.75
+step = 0.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -110,7 +87,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_ng2pw")]
+"values": [ExtResource("3_r3d8o")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -134,7 +111,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [2]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -167,10 +144,10 @@ tracks/5/path = NodePath("Sprite2D:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -274,9 +251,8 @@ tracks/6/keys = {
 "values": [SubResource("CapsuleShape2D_yh8a2")]
 }
 
-[sub_resource type="Animation" id="Animation_35at0"]
-resource_name = "PlayerWalkingRight"
-length = 0.5
+[sub_resource type="Animation" id="Animation_m111u"]
+resource_name = "PlayerIdleRight"
 loop_mode = 1
 step = 0.0
 tracks/0/type = "value"
@@ -289,7 +265,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_cpaxu")]
+"values": [ExtResource("1_ng2pw")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -346,7 +322,7 @@ tracks/5/path = NodePath("Sprite2D:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.25),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
@@ -454,9 +430,10 @@ tracks/6/keys = {
 "values": [SubResource("CapsuleShape2D_yh8a2")]
 }
 
-[sub_resource type="Animation" id="Animation_g1ap3"]
-resource_name = "PlayerHoldingJump"
-length = 0.75
+[sub_resource type="Animation" id="Animation_35at0"]
+resource_name = "PlayerWalkingRight"
+length = 0.5
+loop_mode = 1
 step = 0.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -468,7 +445,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_r3d8o")]
+"values": [ExtResource("2_cpaxu")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -492,7 +469,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2]
+"values": [1]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -525,10 +502,10 @@ tracks/5/path = NodePath("Sprite2D:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [0, 1]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -543,9 +520,8 @@ tracks/6/keys = {
 "values": [SubResource("CapsuleShape2D_yh8a2")]
 }
 
-[sub_resource type="Animation" id="Animation_xsykm"]
-resource_name = "PlayerFloat"
-step = 0.0
+[sub_resource type="Animation" id="Animation_xt5fc"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -556,55 +532,79 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_aoleg")]
+"values": [ExtResource("1_ng2pw")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:offset")
+tracks/1/path = NodePath("Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -15)]
+"update": 1,
+"values": [2]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:flip_h")
+tracks/2/path = NodePath("Sprite2D:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [1]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:hframes")
+tracks/3/path = NodePath("Sprite2D:offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
+"update": 0,
+"values": [Vector2(0, -16)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D:vframes")
+tracks/4/path = NodePath("Sprite2D:flip_h")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CollisionShape2D:shape")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CapsuleShape2D_yh8a2")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tebir"]

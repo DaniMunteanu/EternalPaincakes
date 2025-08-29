@@ -12,17 +12,16 @@ var current_player_state = player_states.IDLE
 @export_range(0,1) var acceleration = 0.1
 @export_range(0,1) var deceleration = 0.1
 
-@export var jump_force = -400.0
-@export_range(0,1) var jump_deceleration = 0.1
+var current_jump_velocity_y = 0.0
+const MAX_JUMP_VELOCITY_Y = -1000.0
+const MIN_JUMP_VELOCITY_Y = -250.0
+const JUMP_FORCE_INCREMENT = 250.0
 
-var current_jump_velocity = 500.0
-var max_jump_velocity = -1000.0
-var jump_force_increment = 250.0
+var current_jump_velocity_x = 0.0
+const MAX_JUMP_VELOCITY_X = 1500.0
+const MIN_JUMP_VELOCITY_X = 1000.0
 
-var max_flying_velocity = 1000.0
-var current_flying_velocity = 0.0
-
-var flying_orientation_modifier = 0.0
+var jump_orientation_modifier = 0.0
 
 func update_player_orientation():
 	var walking_angle = rad_to_deg(velocity.angle())
@@ -46,14 +45,7 @@ func update_walking_movement():
 		print("idle")
 
 func check_for_jump():
-	if Input.is_action_just_released("jump"):
-		velocity.x = 100.0 * flying_orientation_modifier
-		velocity.y = current_jump_velocity
-		animation_player.play("PlayerFloat")
-		current_player_state = player_states.IN_AIR
-		print("in aer")
-	elif Input.is_action_pressed("jump") and is_on_floor():
-		#velocity.y = jump_force
+	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.x = 0.0
 		current_player_state = player_states.HOLDING_JUMP
 		print("holding jump")
@@ -67,15 +59,15 @@ func _physics_process(delta: float) -> void:
 	match current_player_state:
 		player_states.IDLE:
 			#update_player_orientation()
-			flying_orientation_modifier = 0.0
+			jump_orientation_modifier = 0.0
 			update_walking_movement()
-			check_for_jump()
 			check_if_in_air()
 			match current_player_orientation:
 				player_orientation.LEFT:
 					animation_player.play("PlayerIdleLeft")
 				player_orientation.RIGHT:
 					animation_player.play("PlayerIdleRight")
+			check_for_jump()
 				
 		player_states.WALKING:
 			update_player_orientation()
@@ -84,35 +76,36 @@ func _physics_process(delta: float) -> void:
 			match current_player_orientation:
 				player_orientation.LEFT:
 					animation_player.play("PlayerWalkingLeft")
-					flying_orientation_modifier = -1.0
+					jump_orientation_modifier = -1.0
 				player_orientation.RIGHT:
 					animation_player.play("PlayerWalkingRight")
-					flying_orientation_modifier = 1.0
+					jump_orientation_modifier = 1.0
 			check_for_jump()
 					
 		player_states.HOLDING_JUMP:
 			if Input.is_action_just_released("jump"):
-				velocity.x = current_flying_velocity * flying_orientation_modifier
-				current_flying_velocity = 0.0
-				flying_orientation_modifier = 0.0
+				velocity.x = current_jump_velocity_x * jump_orientation_modifier
+				current_jump_velocity_x = 0.0
+				jump_orientation_modifier = 0.0
 				
-				velocity.y = current_jump_velocity
-				current_jump_velocity = 500.0
+				velocity.y = current_jump_velocity_y
+				current_jump_velocity_y = MIN_JUMP_VELOCITY_Y
 				animation_player.play("PlayerFloat")
+				
 				current_player_state = player_states.IN_AIR
 			else:
-				flying_orientation_modifier = 0.0
+				jump_orientation_modifier = 0.0
 				if Input.is_action_pressed("move_left") == Input.is_action_pressed("move_right"):
-					flying_orientation_modifier = 0.0
+					jump_orientation_modifier = 0.0
 				elif Input.is_action_pressed("move_left"):
-					flying_orientation_modifier = -1.0
+					jump_orientation_modifier = -1.0
 				else:
-					flying_orientation_modifier = 1.0
+					jump_orientation_modifier = 1.0
 					
 				animation_player.play("PlayerHoldingJump")
-				current_jump_velocity = move_toward(current_jump_velocity, max_jump_velocity, delta * jump_force_increment)
+				current_jump_velocity_y = move_toward(current_jump_velocity_y, MAX_JUMP_VELOCITY_Y, delta * JUMP_FORCE_INCREMENT)
 				
-				current_flying_velocity = move_toward(current_flying_velocity, max_flying_velocity, delta * jump_force_increment)
+				current_jump_velocity_x = move_toward(current_jump_velocity_x, MAX_JUMP_VELOCITY_X, delta * JUMP_FORCE_INCREMENT)
 				
 		player_states.IN_AIR:
 			if is_on_floor():
