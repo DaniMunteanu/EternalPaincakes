@@ -638,6 +638,8 @@ shape = SubResource("CapsuleShape2D_yh8a2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
+limit_left = 0
+limit_right = 640
 position_smoothing_enabled = true
 
 [node name="JumpProgressBar" parent="." instance=ExtResource("6_pew7w")]
