@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://7f6b70jg80m6"]
+[gd_scene load_steps=16 format=3 uid="uid://7f6b70jg80m6"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_2gox1"]
 [ext_resource type="Texture2D" uid="uid://k34s6c44uc32" path="res://Sprites/Player/PlayerIdle.png" id="1_ng2pw"]
 [ext_resource type="Texture2D" uid="uid://iy7sr6oiy4tl" path="res://Sprites/Player/PlayerWalking.png" id="2_cpaxu"]
 [ext_resource type="Texture2D" uid="uid://ba7o6air1l5dr" path="res://Sprites/Player/PlayerPrepareJump.png" id="3_r3d8o"]
 [ext_resource type="Texture2D" uid="uid://yd6udpc3da2p" path="res://Sprites/Player/PlayerJumping.png" id="5_aoleg"]
+[ext_resource type="PackedScene" uid="uid://wt5dwnmb6oyv" path="res://UI_Elements/JumpProgressBar.tscn" id="6_pew7w"]
 
 [sub_resource type="Animation" id="Animation_xsykm"]
 resource_name = "PlayerFloat"
@@ -638,3 +639,12 @@ shape = SubResource("CapsuleShape2D_yh8a2")
 [node name="Camera2D" type="Camera2D" parent="."]
 process_callback = 0
 position_smoothing_enabled = true
+
+[node name="JumpProgressBar" parent="." instance=ExtResource("6_pew7w")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -9.0
+offset_top = 1.0
+offset_right = 9.0
+offset_bottom = 6.0

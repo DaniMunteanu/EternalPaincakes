@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://wt5dwnmb6oyv"]
+
+[ext_resource type="Texture2D" uid="uid://buc8gvb8qgcs6" path="res://Sprites/JumpProgressBarBorder.png" id="1_omwo0"]
+[ext_resource type="Texture2D" uid="uid://7so0miuf415h" path="res://Sprites/JumpProgressBarFill.png" id="2_swras"]
+[ext_resource type="Script" path="res://UI_Elements/jump_progress_bar.gd" id="3_2i3ci"]
+
+[node name="JumpProgressBar" type="TextureProgressBar"]
+anchors_preset = -1
+anchor_right = 0.028
+anchor_bottom = 0.014
+offset_right = 0.0799999
+offset_bottom = -0.04
+max_value = 60.0
+texture_under = ExtResource("1_omwo0")
+texture_progress = ExtResource("2_swras")
+script = ExtResource("3_2i3ci")
